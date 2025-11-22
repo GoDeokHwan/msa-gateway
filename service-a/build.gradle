@@ -35,3 +35,8 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+
+tasks.named('bootRun') {
+    mainClass.set("com.example.servicea.ServiceAApplication")
+}
