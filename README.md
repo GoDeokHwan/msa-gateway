@@ -15,3 +15,9 @@ curl --location 'http://localhost:8080/api/service-a/health'
 ```
 ### Step2
 msa-gateway -> security -> service-a 로 인가된 사용자만 이용하게 하는 시스템
+
+msa-gateway에 AuthenticationFilter.java에서 인가된 URL에 따라 auth-service와 통신하여 인증처리
+타서버에는 X-USER-ID라고 해더에 user_id 정보를 추가해서 발송하게 처리 
+
+### Step3 
+Exception 처리 공통화 

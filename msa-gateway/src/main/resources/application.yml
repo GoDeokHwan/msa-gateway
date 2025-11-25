@@ -3,12 +3,8 @@ spring:
     name: msa-gateway
   cloud:
     gateway:
-      # ? ??? ?? ?? ???? ??????, Deprecated ??? ???? 'default-filters' ??
       default-filters:
-        # ? SpEL ?? ??? ?????.
         - AddRequestHeader=X-Gateway-StartTime, '#{T(java.lang.System).currentTimeMillis()}'
-
-      # ? 'routes' ?? ??? ?? ?? ????? ???? ?? ?? ??? ??
       routes:
         - id: service-a
           uri: http://localhost:8081
@@ -16,13 +12,21 @@ spring:
             - Path=/api/service-a/**
           filters:
             - RewritePath=/api/service-a/(?<segment>.*), /api/$\{segment}
-        - id: service-b
+        - id: auth-service
           uri: http://localhost:8082
           predicates:
-            - Path=/api/service-b/**
+            - Path=/api/auth/**
           filters:
-            - RewritePath=/api/service-a/(?<segment>.*), /api/$\{segment}
+            - RewritePath=/api/auth/(?<segment>.*), /auth/$\{segment}
 logging:
   level:
-    org.springframework.cloud.gateway: DEBUG
+    org.springframework.cloud.gateway.route: DEBUG
+    org.springframework.cloud.gateway.filter: DEBUG
     reactor.netty.http.server.HttpServer: DEBUG
+
+web:
+  security:
+    - /api/auth/**
+    - /auth/**
+  cors:
+    - http://localhost:8080
