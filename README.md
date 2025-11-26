@@ -26,4 +26,7 @@ requestId를 공유하여 전체적으로 흐름을 연결 고리 생성
 3. logback.xml에서 traceId를 requestId 로 표현되게 설정
 
 ### Step4
-Exception 처리 공통화 
+Exception 처리
+
+### Step5
+이미지 통신 확인
