@@ -18,11 +18,10 @@ spring:
             - Path=/api/auth/**
           filters:
             - RewritePath=/api/auth/(?<segment>.*), /auth/$\{segment}
+
+
 logging:
-  level:
-    org.springframework.cloud.gateway.route: DEBUG
-    org.springframework.cloud.gateway.filter: DEBUG
-    reactor.netty.http.server.HttpServer: DEBUG
+  config: classpath:logback.xml
 
 web:
   security:

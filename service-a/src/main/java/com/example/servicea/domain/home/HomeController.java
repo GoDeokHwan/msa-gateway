@@ -20,6 +20,7 @@ public class HomeController {
     @PostMapping("/save")
     public ResponseEntity<HomeRequest> post(@RequestBody HomeRequest homeRequest) {
         String userId = UserContext.getUserId();
+        log.info("Current UserId: " + userId);
         return ResponseEntity.ok(new HomeRequest(userId, homeRequest.name(), homeRequest.email()));
     }
 }
