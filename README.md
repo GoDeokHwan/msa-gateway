@@ -36,3 +36,6 @@ vault applicant 설정값 추가 통신
 1. vault 폴더에 설정값 추가
 2. docker-compose.yml에 vault 설치
 3. service-a 서비스와 연결
+
+### Step7
+gRPC 통신용 서버 구축
