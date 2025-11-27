@@ -4,7 +4,7 @@ spring:
   cloud:
     vault:
       uri: https://127.0.0.1:8201
-      token: hvs.CAESILi0Dg-tLc-ZWyCpeMN7PpNiEShIJBIECyJfCb2E8ChlGh4KHGh2cy41dGdBOGRCZzlsWDZQVTFKTDNvVUdpSng
+      token: ${VAULT_TOKEN}
 #      ssl:
 #        skip-ssl-validation: true
       ssl:
