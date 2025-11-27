@@ -5,7 +5,7 @@
 #export VAULT_SKIP_VERIFY=true
 #
 #vault status
-#vault login {ROOT_TOKEN}
+#vault login {ROOT_TOKENS}
 #vault auth enable userpass
 #vault write auth/userpass/users/admin password=admin1234 policies=default
 #
