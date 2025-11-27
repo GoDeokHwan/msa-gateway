@@ -1,6 +1,19 @@
 spring:
   application:
-    name: serivce-a
+    name: service-a
+  cloud:
+    vault:
+      uri: https://127.0.0.1:8201
+      token: hvs.CAESILi0Dg-tLc-ZWyCpeMN7PpNiEShIJBIECyJfCb2E8ChlGh4KHGh2cy41dGdBOGRCZzlsWDZQVTFKTDNvVUdpSng
+#      ssl:
+#        skip-ssl-validation: true
+      ssl:
+        trust-store: classpath:vault-truststore.jks
+        trust-store-password: 12341234
+#      kv:
+#        enabled: true
+#        backend: secret
+#        default-context: service-a
 
 server:
   port: 8081

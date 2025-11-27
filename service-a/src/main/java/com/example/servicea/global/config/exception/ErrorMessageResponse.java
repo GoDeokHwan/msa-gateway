@@ -2,7 +2,6 @@ package com.example.servicea.global.config.exception;
 
 import com.example.servicea.global.util.date.LocalDateTimeUtil;
 import lombok.Getter;
-import org.jspecify.annotations.Nullable;
 import org.slf4j.MDC;
 
 import java.time.LocalDateTime;

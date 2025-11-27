@@ -30,3 +30,9 @@ Exception 처리
 
 ### Step5
 이미지 통신 확인
+
+### Step6
+vault applicant 설정값 추가 통신
+1. vault 폴더에 설정값 추가
+2. docker-compose.yml에 vault 설치
+3. service-a 서비스와 연결

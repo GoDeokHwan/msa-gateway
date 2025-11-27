@@ -1,0 +1,41 @@
+services:
+  vault:
+    image: hashicorp/vault:1.17
+    container_name: vault
+    cap_add:
+      - IPC_LOCK
+    ports:
+      - "8201:8201"   # TLS listener
+    environment:
+      # TLS listener + file backend + UI
+      VAULT_LOCAL_CONFIG: |
+        {
+          "backend": { "file": { "path": "/vault/data" } },
+          "listener": {
+            "tcp": {
+              "address": "0.0.0.0:8201",
+              "tls_cert_file": "/vault/certs/vault.crt",
+              "tls_key_file": "/vault/certs/vault.key"
+            }
+          },
+          "ui": true
+        }
+      # Vault CLI 접속용
+      VAULT_ADDR: "https://127.0.0.1:8201"
+    volumes:
+      - ./vault/data:/vault/data
+      - ./vault/certs:/vault/certs
+    restart: unless-stopped
+  vault-agent:
+    image: hashicorp/vault:1.17
+    container_name: vault-agent
+    cap_add:
+      - IPC_LOCK
+    depends_on:
+      - vault
+    volumes:
+      - ./vault/agent.hcl:/vault/agent/agent.hcl
+      - ./vault/templates:/vault/templates
+      - ./vault/data:/vault/secrets
+    command: agent -config=/vault/agent/agent.hcl
+    restart: unless-stopped

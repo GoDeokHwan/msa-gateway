@@ -8,6 +8,10 @@
         </encoder>
     </appender>
 
+    <logger name="org.springframework.cloud.vault" level="TRACE"/>
+    <logger name="org.springframework.vault" level="TRACE"/>
+    <logger name="org.springframework.web" level="INFO"/>
+
     <root level="INFO">
         <appender-ref ref="CONSOLE"/>
     </root>
