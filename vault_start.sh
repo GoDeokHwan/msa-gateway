@@ -5,7 +5,7 @@
 #export VAULT_SKIP_VERIFY=true
 #
 #vault status
-#vault login hvs.LejkgpbvLi94QpsWqS0cErzq
+#vault login {ROOT_TOKEN}
 #vault auth enable userpass
 #vault write auth/userpass/users/admin password=admin1234 policies=default
 #
@@ -15,7 +15,6 @@
 #
 #
 #docker exec -it vault sh
-#vault login hvs.LejkgpbvLi94QpsWqS0cErzq
 #vault policy write service-a-policy /vault/policies/service-a-policy.hcl
 #vault write auth/userpass/users/admin password=admin1234 policies=service-a-policy
 #vault login -tls-skip-verify -method=userpass username=admin password=admin1234
