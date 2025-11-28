@@ -38,4 +38,5 @@ vault applicant 설정값 추가 통신
 3. service-a 서비스와 연결
 
 ### Step7
-gRPC 통신용 서버 구축
+1. gRPC 통신용 서버 구축
+2. service-a 에서 gRPC 서버와 통신 

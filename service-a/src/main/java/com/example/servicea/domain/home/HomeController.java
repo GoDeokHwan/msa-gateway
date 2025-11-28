@@ -1,9 +1,13 @@
 package com.example.servicea.domain.home;
 
+import com.example.auth.servicea.UserResponse;
 import com.example.servicea.global.binder.VaultProperties;
 import com.example.servicea.global.config.exception.CustomException;
 import com.example.servicea.global.config.exception.CustomExceptionEnum;
 import com.example.servicea.global.support.user.UserContext;
+import com.example.servicea.global.util.json.JsonHelper;
+import com.example.servicea.infrastructure.common.grpc.UserGrpcClient;
+import io.grpc.internal.JsonUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class HomeController {
 
     private final VaultProperties vaultProperties;
+    private final UserGrpcClient userGrpcClient;
 
     @GetMapping("/health")
     public ResponseEntity<String> health() {
@@ -49,5 +54,14 @@ public class HomeController {
         log.info("Current UserId: " + userId);
         log.info(file.getOriginalFilename());
         return ResponseEntity.ok(file.getOriginalFilename());
+    }
+
+    @GetMapping("/grpc")
+    public ResponseEntity<UserDTO> getGrpc() {
+        UserResponse response = userGrpcClient.getUser(1L);
+
+        // Protobuf -> JSON
+        UserDTO json = JsonHelper.fromJson(response, UserDTO.class);
+        return ResponseEntity.ok(json);
     }
 }
